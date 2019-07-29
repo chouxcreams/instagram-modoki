@@ -28,3 +28,6 @@ Route::get('login/github', 'Auth\LoginController@redirectToProvider');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::post('user', 'User\UserController@updateUser');
+
+Route::get('/', 'HomeController@index');
+Route::post('/upload', 'HomeController@upload');
