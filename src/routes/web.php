@@ -28,3 +28,4 @@ Route::get('/', 'HomeController@index');
 Route::post('/upload', 'HomeController@upload');
 
 Route::get('login', 'SignInController@index');
+Route::get('logout', 'HomeController@logout');

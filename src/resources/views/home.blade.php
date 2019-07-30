@@ -27,9 +27,15 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">ログイン</a>
-                        </li>
+                        @if ($session == 'logout')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">ログイン</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">ログアウト</a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/">投稿</a>
                         </li>
@@ -46,7 +52,7 @@
                     sampleID
                 </div>
                 <div class="col-12">
-                    <img class="media-object img-thumbnail" src="http://127.0.0.1/public/alHruQ8zy6OYeYe5zwek3NSZDhKw85ZlfuoWK0Mz.jpeg">    
+                    <img class="media-object img-thumbnail" src="http://127.0.0.1/storage/app/public/alHruQ8zy6OYeYe5zwek3NSZDhKw85ZlfuoWK0Mz.jpeg">    
                 </div>
                 <div class="col-6">
                     caption hogehoge    
