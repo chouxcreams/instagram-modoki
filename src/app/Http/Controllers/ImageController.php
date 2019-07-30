@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Img;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ImageController extends Controller
 {
     /**
      * Show the application dashboard.
