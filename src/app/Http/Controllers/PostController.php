@@ -47,4 +47,10 @@ class PostController extends Controller
         Post::insert($post_array);
         return redirect('/');
     }
+
+    public function deletePost(Request $request) {
+        $id = $request->post('post_id');
+        Post::destroy($id);
+        return redirect('/');
+    }
 }

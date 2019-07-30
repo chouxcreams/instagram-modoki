@@ -16,7 +16,7 @@ class HomeController extends Controller
             $session = 'logout';
         }
         $posts = Post::all();
-        $user_id = $posts[0]['id'];
-        return view('home', ['session'=>$session, 'posts'=>$posts, 'user'=>$user_id]);
+        $user_id = $request->session()->get('user_id');
+        return view('home', ['session'=>$session, 'posts'=>$posts, 'user_id'=>$user_id]);
     }
 }

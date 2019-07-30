@@ -32,3 +32,4 @@ Route::get('logout', 'SignInController@logout');
 
 Route::get('post', 'PostController@index');
 Route::post('post', 'PostController@createPost');
+Route::post('post/delete', 'PostController@deletePost');
