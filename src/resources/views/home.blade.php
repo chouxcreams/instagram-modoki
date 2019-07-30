@@ -44,17 +44,18 @@
             </nav>
         </div>
     </div>
+    @for ($i = count($posts)-1; $i >= 0; $i--)
     <div class="row mt-2 mb-2">
         <div class="col-md-6 col-xs-12 offset-md-3">
             <div class="border">
                 <div class="col-12">
-                    sampleID
+                    {{$posts[$i]['user_id']}}
                 </div>
                 <div class="col-12">
-                    <img class="media-object img-thumbnail" src="http://127.0.0.1/storage/app/public/alHruQ8zy6OYeYe5zwek3NSZDhKw85ZlfuoWK0Mz.jpeg">    
+                    <img class="media-object img-thumbnail" src="{{ asset('storage/' . $posts[$i]['img_file']) }}">    
                 </div>
                 <div class="col-6">
-                    caption hogehoge
+                    {{$posts[$i]['caption']}}
                 </div>
                 <div class="col-6">
                     <i class="far fa-star"></i>    
@@ -65,6 +66,7 @@
             </div>
         </div>
     </div>
+    @endfor
 </div>
 </body>
 </html>

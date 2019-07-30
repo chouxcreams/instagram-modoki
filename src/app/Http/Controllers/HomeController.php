@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Socialite;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Post;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,8 @@ class HomeController extends Controller
         } else {
             $session = 'logout';
         }
-        return view('home', ['session'=>$session]);
+        $posts = Post::all();
+        $user_id = $posts[0]['id'];
+        return view('home', ['session'=>$session, 'posts'=>$posts, 'user'=>$user_id]);
     }
 }
