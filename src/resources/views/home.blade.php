@@ -17,8 +17,7 @@
 </head>
 <div class="container">
     <div class="row mb-10">
-        <div class="col-md-3 col-xs-0"></div>
-        <div class="col-md-6 col-xs-12">
+        <div class="col-md-6 col-xs-12 offset-md-3">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,7 +28,7 @@
                             <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">ログイン</a>
+                            <a class="nav-link" href="/login">ログイン</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/">投稿</a>
@@ -39,11 +38,25 @@
             </nav>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 col-xs-0"></div>
-        <div class="col-md-6 col-xs-12">
-            <div class=" d-flex align-items-center">
-                上下中央寄せされる
+    <div class="row mt-2 mb-2">
+        <div class="col-md-6 col-xs-12 offset-md-3">
+            <div class="border">
+
+                <div class="col-12">
+                    sampleID
+                </div>
+                <div class="col-12">
+                    <img class="media-object img-thumbnail" src="http://127.0.0.1/public/alHruQ8zy6OYeYe5zwek3NSZDhKw85ZlfuoWK0Mz.jpeg">    
+                </div>
+                <div class="col-6">
+                    caption hogehoge    
+                </div>
+                <div class="col-6">
+                    <i class="far fa-star"></i>    
+                </div>
+                <div class="col-12">
+                    いいねしたユーザー   
+                </div>
             </div>
         </div>
     </div>
