@@ -16,9 +16,4 @@ class HomeController extends Controller
         }
         return view('home', ['session'=>$session]);
     }
-
-    public function logout(Request $request) {
-        $request->session()->pull('github_token');
-        return redirect('/');
-    }
 }
