@@ -48,25 +48,29 @@
     <div class="row mt-2 mb-2">
         <div class="col-md-6 col-xs-12 offset-md-3">
             <div class="border">
-                <div class="col-5">
-                    {{$posts[$i]['github_id']}}
+                <div class="row">
+                    <div class="col-10">
+                        <a href="{{ route('user.profile', ['id' => $posts[$i]['user_id']]) }}">
+                            {{$posts[$i]['github_id']}}
+                        </a>
+                    </div>
+                    @if ($user_id == $posts[$i]['user_id'])
+                        <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="post/delete">
+                        {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-danger">削除</button>
+                            <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
+                        </form>
+                    @endif
                 </div>
-                @if ($user_id == $posts[$i]['user_id'])
-                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="post/delete">
-                    {{ csrf_field() }}
-                        <button type="submit" class="btn btn-outline-danger">削除</button>
-                        <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
-                    </form>
-                @endif
                 <div class="col-12">
                     <img class="media-object img-thumbnail" src="{{ $posts[$i]['img_path'] }}">    
                 </div>
-                <div class="col-6">
-                    {{$posts[$i]['caption']}}
-                </div>
-                <div class="col-6">
+                <div class="row">
+                    <div class="col-10">
+                        {{$posts[$i]['caption']}}
+                    </div>
                     @if ($posts[$i]['liked'])
-                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="like/dislike">
+                    <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="like/dislike">
                     {{ csrf_field() }}
                         <button type="submit" class="btn btn-warning">
                             <i class="fas fa-star"></i>
@@ -74,7 +78,7 @@
                         <input type="hidden" name="like_id" value="{{$posts[$i]['like_id']}}">
                     </form>
                     @else
-                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="like/like">
+                    <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="like/like">
                     {{ csrf_field() }}
                         <button type="submit" class="btn btn-warning">
                             <i class="far fa-star"></i>
@@ -85,7 +89,11 @@
                     @endif
                 </div>
                 <div class="col-12">
-                    いいねしたユーザー
+                    <form method="get" enctype="multipart/form-data" class="form-inline" action="like">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-black">いいねしたユーザー</button>
+                        <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
+                    </form>
                 </div>
             </div>
         </div>

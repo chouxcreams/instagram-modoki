@@ -34,5 +34,8 @@ Route::get('post', 'PostController@index');
 Route::post('post', 'PostController@createPost');
 Route::post('post/delete', 'PostController@deletePost');
 
+Route::get('like', 'LikeController@index');
 Route::post('like/like', 'LikeController@like');
 Route::post('like/dislike', 'LikeController@dislike');
+
+Route::get('profile/{id}', 'ProfileController@index')->name('user.profile');
