@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Post;
+use Storage;
 
 class PostController extends Controller
 {
@@ -30,9 +31,9 @@ class PostController extends Controller
                 'mimes:jpeg,png',
             ]
         ]);
-
+        $file = $request->file('file');
         if ($request->file('file')->isValid([])) {
-            $post_array['img_file'] = basename($request->file->store('public'));
+            $post_array['img_file'] = Storage::disk('s3')->put('/', $file, 'public');
         } else {
             return redirect()
                 ->back()
@@ -48,6 +49,8 @@ class PostController extends Controller
 
     public function deletePost(Request $request) {
         $id = $request->post('post_id');
+        $post = Post::where('id', $id)->get();
+        Storage::disk('s3')->delete($post[0]['img_file']);
         Post::destroy($id);
         return redirect('/');
     }

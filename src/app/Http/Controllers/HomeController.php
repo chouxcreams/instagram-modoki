@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Model\Post;
+use Storage;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,9 @@ class HomeController extends Controller
         }
         $posts = Post::all();
         $user_id = $request->session()->get('user_id');
+        foreach ($posts as $post) {
+            $post['img_path'] = Storage::disk('s3')->url($post['img_file']);
+        }
         return view('home', ['session'=>$session, 'posts'=>$posts, 'user_id'=>$user_id]);
     }
 }

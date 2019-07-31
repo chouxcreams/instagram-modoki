@@ -59,7 +59,7 @@
                     </form>
                 @endif
                 <div class="col-12">
-                    <img class="media-object img-thumbnail" src="{{ asset('storage/' . $posts[$i]['img_file']) }}">    
+                    <img class="media-object img-thumbnail" src="{{ $posts[$i]['img_path'] }}">    
                 </div>
                 <div class="col-6">
                     {{$posts[$i]['caption']}}
