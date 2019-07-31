@@ -65,7 +65,13 @@
                     {{$posts[$i]['caption']}}
                 </div>
                 <div class="col-6">
-                    <i class="far fa-star"></i>    
+                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="post/like">
+                    {{ csrf_field() }}
+                        <button type="submit" class="btn btn-warning">
+                            <i class="far fa-star"></i>
+                        </button>
+                        <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
+                    </form>
                 </div>
                 <div class="col-12">
                     いいねしたユーザー
