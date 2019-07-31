@@ -8,12 +8,10 @@ use App\Model\Post;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        if ($request->session()->exists('github_token')) {
-            $session = 'login';
-        } else {
-            $session = 'logout';
+        if (!$request->session()->exists('github_token')) {
+            return redirect('login');
         }
-        return view('post', ['session'=>$session]);
+        return view('post');
     }
 
     public function createPost(Request $request) {

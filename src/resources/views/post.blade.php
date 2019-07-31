@@ -28,15 +28,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Home</a>
                         </li>
-                        @if ($session == 'logout')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/login">ログイン</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="/logout">ログアウト</a>
-                            </li>
-                        @endif
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">ログアウト</a>
+                        </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/post">投稿</a>
                         </li>
