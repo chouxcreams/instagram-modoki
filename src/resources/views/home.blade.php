@@ -65,13 +65,24 @@
                     {{$posts[$i]['caption']}}
                 </div>
                 <div class="col-6">
-                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="post/like">
+                    @if ($posts[$i]['liked'])
+                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="like/dislike">
+                    {{ csrf_field() }}
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-star"></i>
+                        </button>
+                        <input type="hidden" name="like_id" value="{{$posts[$i]['like_id']}}">
+                    </form>
+                    @else
+                    <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="like/like">
                     {{ csrf_field() }}
                         <button type="submit" class="btn btn-warning">
                             <i class="far fa-star"></i>
                         </button>
                         <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
+                        <input type="hidden" name="user_id" value="{{$user_id}}">
                     </form>
+                    @endif
                 </div>
                 <div class="col-12">
                     いいねしたユーザー

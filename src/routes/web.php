@@ -33,3 +33,6 @@ Route::get('logout', 'SignInController@logout');
 Route::get('post', 'PostController@index');
 Route::post('post', 'PostController@createPost');
 Route::post('post/delete', 'PostController@deletePost');
+
+Route::post('like/like', 'LikeController@like');
+Route::post('like/dislike', 'LikeController@dislike');
