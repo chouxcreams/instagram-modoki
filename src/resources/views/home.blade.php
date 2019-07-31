@@ -49,7 +49,7 @@
         <div class="col-md-6 col-xs-12 offset-md-3">
             <div class="border">
                 <div class="col-5">
-                    {{$posts[$i]['user_id']}}
+                    {{$posts[$i]['github_id']}}
                 </div>
                 @if ($user_id == $posts[$i]['user_id'])
                     <form method="post" enctype="multipart/form-data" class="form-inline col-1" action="post/delete">

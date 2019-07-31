@@ -33,7 +33,7 @@ class PostController extends Controller
         ]);
         $file = $request->file('file');
         if ($request->file('file')->isValid([])) {
-            $post_array['img_file'] = Storage::disk('s3')->put('/', $file, 'public');
+            $post_array['img_file'] = Storage::disk('s3')->put('/', $file);
         } else {
             return redirect()
                 ->back()
