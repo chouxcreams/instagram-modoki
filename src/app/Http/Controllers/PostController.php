@@ -47,7 +47,9 @@ class PostController extends Controller
         }
 
         $post_array['user_id'] = $request->session()->get('user_id');
-        $post_array['caption'] = $request->post('caption');
+        $caption = $request->post('caption');
+        if (is_null($caption)) $caption = "";
+        $post_array['caption'] = $caption;
         Post::insert($post_array);
         return redirect('/');
     }
