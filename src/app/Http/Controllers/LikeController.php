@@ -28,11 +28,20 @@ class LikeController extends Controller
     }
 
     public function like(Request $request) {
-        $now = date("Y/m/d H:i:s");
         $post_id = $request->post('post_id');
+        $user_id = $request->session()->get('user_id');
+
+        $likes = Like::select('id')->where([
+            ['post_id', $post_id],
+            ['user_id', $user_id]
+        ])->get();
+
+        if (!empty($likes[0])) return redirect('/');
+
+        $now = date("Y/m/d H:i:s");
         $like = [
             'post_id' => $post_id,
-            'user_id' => $request->session()->get('user_id'),
+            'user_id' => $user_id,
             'created_at' => $now,
             'updated_at' => $now
         ];
@@ -48,6 +57,10 @@ class LikeController extends Controller
 
     public function dislike(Request $request) {
         $like_id = $request->post('like_id');
+
+        $likes = Like::select('id')->where('id', $like_id)->get();
+
+        if (empty($likes[0])) return redirect('/');
 
         $like = Like::select('post_id', 'user_id')->where('id', $like_id)->get();
         $post_id = $like[0]['post_id'];
