@@ -14,8 +14,11 @@ class AddColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('icon_file');
-            $table->bigInteger('num_of_likes');
+            $table->string('icon_file')->after('name');
+            $table->bigInteger('num_of_likes')->after('icon_file')->nullable();
+            $table->dropColumn('email');
+            $table->dropColumn('email_verified_at');
+            $table->dropColumn('password');
         });
     }
 
@@ -29,6 +32,9 @@ class AddColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('icon_file');
             $table->dropColumn('num_of_likes');
+            $table->string('email')->after('name')->unique();
+            $table->timestamp('email_verified_at')->after('email')->nullable();
+            $table->string('password')->after('email_verified_at');
         });
     }
 }

@@ -21,8 +21,8 @@ class LikeController extends Controller
         $like_users = Like::select('user_id')->where('post_id', $post_id)->get();
         $user_names = [];
         foreach($like_users as $like_user) {
-            $user_name = User::select('github_id')->where('id', $like_user['user_id'])->get();
-            $user_names[] = $user_name[0]['github_id'];
+            $user_name = User::select('name')->where('id', $like_user['user_id'])->get();
+            $user_names[] = $user_name[0]['name'];
         }
         return view('like', ['session'=>$session, 'user_names'=>$user_names]);
     }

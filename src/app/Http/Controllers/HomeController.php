@@ -23,8 +23,8 @@ class HomeController extends Controller
         foreach ($posts as $post) {
             $post['img_path'] = Storage::disk('s3')->url($post['img_file']);
 
-            $github_ids = User::select('github_id')->where('id', $post['user_id'])->get();
-            $post['github_id'] = $github_ids[0]['github_id'];
+            $github_ids = User::select('name')->where('id', $post['user_id'])->get();
+            $post['github_id'] = $github_ids[0]['name'];
 
             $likes = Like::select('id')->where([
                 ['post_id', $post['id']],
