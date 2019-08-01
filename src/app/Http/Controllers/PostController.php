@@ -16,7 +16,12 @@ class PostController extends Controller
     }
 
     public function createPost(Request $request) {
-        $post_array = ['num_of_likes'=>0];
+        $now = date("Y/m/d H:i:s");
+        $post_array = [
+            'num_of_likes'=>0,
+            'created_at'=>$now,
+            'updated_at'=>$now
+            ];
         
         // 画像のアップロード
         $this->validate($request, [

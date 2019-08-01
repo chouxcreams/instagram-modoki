@@ -28,10 +28,13 @@ class LikeController extends Controller
     }
 
     public function like(Request $request) {
+        $now = date("Y/m/d H:i:s");
         $post_id = $request->post('post_id');
         $like = [
             'post_id' => $post_id,
-            'user_id' => $request->session()->get('user_id')
+            'user_id' => $request->session()->get('user_id'),
+            'created_at' => $now,
+            'updated_at' => $now
         ];
         Like::insert($like);
 
