@@ -17,7 +17,7 @@ return [
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),         // 追加！
         'client_secret' => env('GITHUB_CLIENT_SECRET'), // 追加！
-        'redirect' => '/login/github/callback',
+        'redirect' => 'login/github/callback',
     ],
 
     'mailgun' => [
