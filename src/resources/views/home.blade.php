@@ -69,23 +69,29 @@
                     <div class="col-10">
                         {{$posts[$i]['caption']}}
                     </div>
-                    @if ($posts[$i]['liked'])
-                    <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="like/dislike">
-                    {{ csrf_field() }}
-                        <button type="submit" class="btn btn-warning">
-                            <i class="fas fa-star"></i>
-                        </button>
-                        <input type="hidden" name="like_id" value="{{$posts[$i]['like_id']}}">
-                    </form>
-                    @else
-                    <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="like/like">
-                    {{ csrf_field() }}
-                        <button type="submit" class="btn btn-warning">
+                    @if ($session == 'logout')
+                        <button class="btn btn-warning col-2 disabled">
                             <i class="far fa-star"></i>
                         </button>
-                        <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
-                        <input type="hidden" name="user_id" value="{{$user_id}}">
-                    </form>
+                    @else
+                        @if ($posts[$i]['liked'])
+                        <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="like/dislike">
+                        {{ csrf_field() }}
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <input type="hidden" name="like_id" value="{{$posts[$i]['like_id']}}">
+                        </form>
+                        @else
+                        <form method="post" enctype="multipart/form-data" class="form-inline col-2" action="like/like">
+                        {{ csrf_field() }}
+                            <button type="submit" class="btn btn-warning">
+                                <i class="far fa-star"></i>
+                            </button>
+                            <input type="hidden" name="post_id" value="{{$posts[$i]['id']}}">
+                            <input type="hidden" name="user_id" value="{{$user_id}}">
+                        </form>
+                        @endif
                     @endif
                 </div>
                 <div class="col-12">

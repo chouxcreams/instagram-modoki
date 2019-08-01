@@ -31,7 +31,7 @@ class LikeController extends Controller
         $post_id = $request->post('post_id');
         $like = [
             'post_id' => $post_id,
-            'user_id' => $request->post('user_id')
+            'user_id' => $request->session()->get('user_id')
         ];
         Like::insert($like);
 
