@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Post;
+use App\Model\User;
 use Storage;
 
 class PostController extends Controller
@@ -56,8 +57,15 @@ class PostController extends Controller
 
     public function deletePost(Request $request) {
         $id = $request->post('post_id');
-        $post = Post::where('id', $id)->get();
-        Storage::disk('s3')->delete($post[0]['img_file']);
+        $posts = Post::where('id', $id)->get();
+        $deleter_id = $request->session()->get('user_id');
+
+        if ($deleter_id != $posts[0]['user_id']) return redirect('/');
+        $users = User::where('id', $posts[0]['user_id'])->get();
+        $user_num_of_likes = $users[0]['num_of_likes'] - $posts[0]['num_of_likes'];
+
+        $users[0]->update(['num_of_likes'=>$user_num_of_likes]);
+        Storage::disk('s3')->delete($posts[0]['img_file']);
         Post::destroy($id);
         return redirect('/');
     }

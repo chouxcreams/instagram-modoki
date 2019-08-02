@@ -56,11 +56,14 @@ class LikeController extends Controller
     }
 
     public function dislike(Request $request) {
-        $like_id = $request->post('like_id');
+        if (!$request->session()->exists('github_token')) return redirect('/');
 
-        $likes = Like::select('id')->where('id', $like_id)->get();
+        $like_id = $request->post('like_id');
+        $likes = Like::select('id', 'user_id')->where('id', $like_id)->get();
+        $liker_id = $request->session()->get("user_id");
 
         if (empty($likes[0])) return redirect('/');
+        if ($likes[0]['user_id'] != $liker_id) return redirect('/');
 
         $like = Like::select('post_id', 'user_id')->where('id', $like_id)->get();
         $post_id = $like[0]['post_id'];
