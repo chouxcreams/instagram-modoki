@@ -62,7 +62,7 @@ class LoginController extends Controller
         $now = date("Y/m/d H:i:s");
         $app_user = DB::select('select * from users where name = ?', [$github_user->user['login']]);
         if (empty($app_user)) {
-            $default_icon = 'zgEOQPC7IBxCgLvWI38G1sZyh8BC0uz3S4bVRPgr.jpeg';
+            $default_icon = $github_user['avatar_url'];
             DB::insert('insert into users (name, icon_file, num_of_likes, remember_token, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', 
             [$github_user->user['login'], $default_icon, 0, $github_user->token, $now, $now]);
             $app_user = DB::select('select * from users where name = ?', [$github_user->user['login']]);

@@ -44,6 +44,21 @@
             </nav>
         </div>
     </div>
+    <div class="row mb-10">
+        <div class="col-md-6 col-xs-12 offset-md-3">
+            <div class="row">
+                <div class="col-4">
+                    <img class="media-object img-thumbnail" src="{{ $user['icon_file'] }}">
+                </div>
+                <div class="col-4">
+                    {{ $user['name'] }}
+                </div>
+                <div class="col-4">
+                    いいね数合計:{{$user['num_of_likes']}}
+                </div>
+            </div>
+        </div>
+    </div>
     @for ($i = 0; $i < ceil(count($posts)/3); $i++)
         <div class="row mb-10">
             <div class="col-md-6 col-xs-12 offset-md-3">
