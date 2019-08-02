@@ -24,7 +24,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-around">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="/">Home</a>
                         </li>
                         @if ($session == 'logout')

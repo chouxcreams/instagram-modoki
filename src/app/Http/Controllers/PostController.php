@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Post;
 use App\Model\User;
+use App\Model\Like;
 use Storage;
 
 class PostController extends Controller
@@ -72,6 +73,11 @@ class PostController extends Controller
         if ($deleter_id != $posts[0]['user_id']) return redirect('/');
         $users = User::where('id', $posts[0]['user_id'])->get();
         $user_num_of_likes = $users[0]['num_of_likes'] - $posts[0]['num_of_likes'];
+
+        $likes = Like::where('post_id', $id)->get();
+        foreach ($likes as $like) {
+            Like::destroy($like['id']);
+        }
 
         $users[0]->update(['num_of_likes'=>$user_num_of_likes]);
         Storage::disk('s3')->delete($posts[0]['img_file']);
