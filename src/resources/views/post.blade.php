@@ -57,7 +57,7 @@
                         </label>
                         <input type="text" class="form-control" readonly="">
                     </div>
-                    <textarea name="caption" class="form-control mb-4" placeholder="投稿のキャプション"></textarea>
+                    <textarea name="caption" class="form-control mb-4" maxlength='100' placeholder="投稿のキャプション"></textarea>
                     <button type="submit" class="btn btn-primary">投稿</button>
                 </div>
             </div>
