@@ -32,9 +32,6 @@ class AddColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('icon_file');
             $table->dropColumn('num_of_likes');
-            $table->string('email')->after('name')->unique();
-            $table->timestamp('email_verified_at')->after('email')->nullable();
-            $table->string('password')->after('email_verified_at');
         });
     }
 }
