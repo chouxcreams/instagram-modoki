@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-primary">投稿</button>
                 </div>
             </div>
-            <input type="hidden" name="where" value='from_html'>
+            <input type="hidden" name="csrf_token" value="{{$csrf_token}}">
         </form>
         </div>
     </div>
@@ -74,6 +74,10 @@
             numFiles = input.get(0).files ? input.get(0).files.length : 1,
             label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
         input.parent().parent().next(':text').val(label);
+    });
+
+    $("form").submit(function() {
+        $(":submit", this).prop("disabled", true);
     });
 </script>
 </body>

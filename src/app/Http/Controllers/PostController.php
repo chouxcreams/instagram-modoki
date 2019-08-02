@@ -13,10 +13,19 @@ class PostController extends Controller
         if (!$request->session()->exists('github_token')) {
             return redirect('login');
         }
-        return view('post');
+        $csrf_token = mt_rand();
+        $request->session()->push('csrf_token', $csrf_token);
+        return view('post', ['csrf_token'=>$csrf_token]);
     }
 
     public function createPost(Request $request) {
+        if ($request->session()->exists('csrf_token')) redirect('/');
+
+        $session_token = $request->session()->pull('csrf_token');
+        $post_token = $request->post('csrf_token'); 
+        if ($session_token != $post_token) redirect('/');
+        $request->session()->push('csrf_token', mt_rand());
+
         $now = date("Y/m/d H:i:s");
         $post_array = [
             'num_of_likes'=>0,
